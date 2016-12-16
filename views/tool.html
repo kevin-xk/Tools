@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><title>Kevin's BookMark</title><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="/scripts/css/materialize.css"><link rel="stylesheet" href="/stylesheets/icon.css?family=Material+Icons"><link rel="stylesheet" href="/stylesheets/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><header><nav class="teal"><div class="container nav-wrapper"><a href="/" class="brand-logo">Do It<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a><ul class="right hide-on-med-and-down"><li id="one-li" class="active"><a href="/">导航</a></li><li id="two-li"><a href="/tool">工具</a></li><li id="three-li"><a href="#">1024</a></li></ul><ul id="mobile-demo" class="side-nav"><li><a href="/">导航</a></li><li><a href="/tool">工具</a></li><li><a href="#">1024</a></li></ul></a></div></nav></header><main><div class="container"><div class="row col s12 m12 l12"><div class="section"><h5>IP 查询</h5><div class="row col s12 m12 l12"><div class="input-field col s12 m4 l4"><input type="text" id="osIp" value="undefined" class="validate"><label>OS Get IP:</label></div><div class="input-field col s12 m4 l4"><input type="text" id="netIp" value="undefined" class="validate"><label>Net Get IP:</label></div><div class="input-field col s12 m4 l4"><input type="text" id="address" value="undefined" class="validate"><label>Net Address:</label></div></div><div class="row col s12 m12 l12"><div class="input-field col s8 m5 l5"><input type="text" id="ip" name="ip" value=" " class="validate"><label>请输入IP或者域名:</label></div><div class="input-field col s4 m2 l2"><a onclick="getIp()" class="waves-effect waves-light btn">查询</a></div><div class="input-field col s12 m5 l5"><input type="text" id="s_address" name="s_address" value=" " class="validate"><label>所在地理位置:</label></div></div></div><div class="divider"></div><div class="section"><h5>时间戳转换工具</h5><div class="row col s12 m12 l12"><div class="input-field col s8 m5 l5"><input type="text" id="intTime" name="intTime" value=" " class="validate"><label>Unix时间戳:</label></div><div class="input-field col s4 m2 l2"><a onclick="getTime()" class="waves-effect waves-light btn">转换</a></div><div class="input-field col s12 m2 l5"><input type="text" id="bjTime" name="bjTime" value=" " class="validate"><label>北京时间:</label></div></div></div><div class="divider"></div></div></div></main><footer class="page-footer teal"><div class="footer-copyright"><div class="container">© 2016<a href="#!" class="green-text text-lighten-4 right">(*^__^*)</a></div></div></footer><script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script><script type="text/javascript" src="/scripts/js/materialize.min.js"></script><script type="text/javascript" src="/javascripts/index.js"></script><script type="text/javascript">//导航栏选中
+$('#one-li').removeClass('active');
+$('#two-li').addClass('active');
+function getIp () {
+  var ip = $.trim($('#ip').val() || '');
+  if (!ip) return Materialize.toast('请输入 IP OR 域名!', 2000, 'warn');
+
+  var url = '/tool/ips/' + ip;
+  $.getJSON(url, function (data) {
+    if (data.address) $('#s_address').val(data.address);
+    else Materialize.toast('输入信息有误,请重试 !', 2000, 'warn');
+  });
+}
+
+function getTime() {
+  var intTime = $.trim($('#intTime').val() || '');
+  var numReg = /^[1-9]\d*$/;
+  if(!numReg.test(intTime)) return Materialize.toast('时间戳格式不正确 !', 2000, 'warn');
+
+  var url = '/tool/times/' + intTime;
+  $.getJSON(url, function (data) {
+    if (data.stringTime) $('#bjTime').val(data.stringTime);
+    else Materialize.toast('输入信息有误,请重试 !', 2000, 'warn');
+  });
+}</script></body></html>

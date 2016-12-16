@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+#container {
+    margin: 20px;
+}
+.teal {
+    background-color: #009688 !important;
+}
+.line {
+    border-bottom: 1px dashed #ccc;
+    padding: 10px 0 10px !important;
+}
+.block {
+    display: block;
+    float: left;
+    margin: 2px 2px 0 0;
+}
+.icon-shadowsocket {
+    background-image: url(../images/spritev5.png);
+    background-position: -176px -161px;
+    width: 16px;
+    height: 16px;
+}
+.icon-sf {
+    background-image: url(../images/sf.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-bl {
+    background-image: url(../images/bl.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-tb {
+    background-image: url(../images/tb.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-jd {
+    background-image: url(../images/jd.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-yhd {
+    background-image: url(../images/yhd.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-aliemail {
+    background-image: url(../images/aliemail.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-wangyiyun {
+    background-image: url(../images/music.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-apple {
+    background-image: url(../images/apple.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-shadow {
+    background-image: url(../images/shadows.png);
+    width: 16px;
+    height: 16px;
+}
+.icon-gfw {
+    background-image: url(../images/gfw.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-lantern {
+    background-image: url(../images/lantern.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-bit {
+    background-image: url(../images/bit.ico);
+    width: 16px;
+    height: 16px;
+}
+.icon-zhihu {
+    background-image: url(../images/zhihu.ico);
+    width: 16px;
+    height: 16px;
+}
+.card a:hover {
+    color: #b3e5fc !important;
+}
+.toast.warn {
+    background-color: red;
+}

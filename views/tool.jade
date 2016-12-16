@@ -1,0 +1,69 @@
+extends layout
+
+block content
+  include _navbar
+  main
+    .container
+      .row.col.s12.m12.l12
+        .section
+          h5 IP 查询
+          .row.col.s12.m12.l12
+            .input-field.col.s12.m4.l4
+              input.validate(type='text', id='osIp', value='#{osIp}')
+              label OS Get IP:
+            .input-field.col.s12.m4.l4
+              input.validate(type='text', id='netIp', value='#{netIp}')
+              label Net Get IP:
+            .input-field.col.s12.m4.l4
+              input.validate(type='text', id='address', value='#{address}')
+              label Net Address:
+          .row.col.s12.m12.l12
+            .input-field.col.s8.m5.l5
+              input.validate(type='text', id='ip', name='ip', value=' ')
+              label 请输入IP或者域名:
+            .input-field.col.s4.m2.l2
+              a(onclick="getIp()").waves-effect.waves-light.btn 查询
+            .input-field.col.s12.m5.l5
+              input.validate(type='text', id='s_address', name='s_address' value=' ')
+              label 所在地理位置:
+        .divider
+        .section
+          h5 时间戳转换工具
+          .row.col.s12.m12.l12
+            .input-field.col.s8.m5.l5
+              input.validate(type='text', id='intTime', name='intTime', value=' ')
+              label Unix时间戳:
+            .input-field.col.s4.m2.l2
+              a(onclick="getTime()").waves-effect.waves-light.btn 转换
+            .input-field.col.s12.m2.l5
+              input.validate(type='text', id='bjTime', name='bjTime' value=' ')
+              label 北京时间:
+        .divider
+block script
+  script(type='text/javascript').
+    //导航栏选中
+    $('#one-li').removeClass('active');
+    $('#two-li').addClass('active');
+    function getIp () {
+      var ip = $.trim($('#ip').val() || '');
+      if (!ip) return Materialize.toast('请输入 IP OR 域名!', 2000, 'warn');
+
+      var url = '/tool/ips/' + ip;
+      $.getJSON(url, function (data) {
+        if (data.address) $('#s_address').val(data.address);
+        else Materialize.toast('输入信息有误,请重试 !', 2000, 'warn');
+      });
+    }
+    
+    function getTime() {
+      var intTime = $.trim($('#intTime').val() || '');
+      var numReg = /^[1-9]\d*$/;
+      if(!numReg.test(intTime)) return Materialize.toast('时间戳格式不正确 !', 2000, 'warn');
+
+      var url = '/tool/times/' + intTime;
+      $.getJSON(url, function (data) {
+        if (data.stringTime) $('#bjTime').val(data.stringTime);
+        else Materialize.toast('输入信息有误,请重试 !', 2000, 'warn');
+      });
+    }
+
